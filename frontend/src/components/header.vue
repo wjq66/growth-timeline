@@ -37,7 +37,7 @@ export default {
             {name:'主题3',id:'3'},
             {name:'主题4',id:'4'},
             {name:'主题5',id:'5'},
-        ]
+        ],
     }
   },
   components:{ElAvatar,ElForm, ElFormItem,ElDatePicker,ElDialog,ElInput,ElUpload,ElButton,ArrowDown,ElDropdown,ElDropdownMenu,ElDropdownItem},

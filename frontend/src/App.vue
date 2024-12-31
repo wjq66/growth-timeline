@@ -28,6 +28,7 @@ export default {
       theme: '',
       headerSrc: '',
       headerName: '',
+      baseURL: `${window.location.protocol}//${window.location.hostname}:3000`,
     }
   },
   mounted(){
@@ -38,7 +39,7 @@ export default {
     async getTheme(){
       this.loading = true
         try {
-          const response = await axios.get("http://localhost:3000/api/theme")
+          const response = await axios.get(`${this.baseURL}/api/theme`)
           this.theme = response.data.theme
           console.log(window.theme); 
         } catch (error) {

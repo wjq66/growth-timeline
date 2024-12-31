@@ -57,7 +57,7 @@
               <el-carousel :interval="4000" type="card" height="200px" :autoplay="false">
                 <el-carousel-item v-for="(img,index) in event.imageUrls" :key="img">
                   <img   
-                    :src="'http://localhost:3000'+img"
+                    :src="baseURL+img"
                     :alt="event.title"
                     @click="showFullImage(index)"
                   >
@@ -88,7 +88,7 @@
           @click="hideFullImage"
         >
           <div class="fullscreen-content">
-            <img :src="'http://localhost:3000'+event.imageUrls[clickIndex]" :alt="event.title">
+            <img :src="baseURL+event.imageUrls[clickIndex]" :alt="event.title">
             <button class="close-btn" @click="hideFullImage">×</button>
           </div>
         </div>
@@ -135,6 +135,7 @@
           image: null
         },
         clickIndex: 0,
+        baseURL: `${window.location.protocol}//${window.location.hostname}:3000`,
       }
     },
     
@@ -202,7 +203,7 @@
             formData.append('image', this.editForm.image)
           }
           
-          await axios.put(`http://localhost:3000/api/events/${this.event.id}`, formData)
+          await axios.put(`${this.baseURL}/api/events/${this.event.id}`, formData)
           this.$emit('event-updated')
           this.isEditing = false
         } catch (error) {
@@ -224,7 +225,7 @@
       async confirmDelete() {
         if (confirm('确定要删除这条记录吗？')) {
           try {
-            await axios.delete(`http://localhost:3000/api/events/${this.event.id}`)
+            await axios.delete(`${this.baseURL}/api/events/${this.event.id}`)
             this.$emit('event-deleted')
           } catch (error) {
             console.error('删除失败:', error)

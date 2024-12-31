@@ -103,6 +103,7 @@ export default {
       dialogVisible: false,
       dialogImageUrl: '',
       dialogImageVisible: false,
+      baseURL: `${window.location.protocol}//${window.location.hostname}:3000`,
     }
   },
   components:{ElForm, ElFormItem,ElDatePicker,ElDialog,ElInput,ElUpload,ElButton,ElIcon,Plus,ZoomIn,Delete},
@@ -134,7 +135,7 @@ export default {
         // console.log(this.formData.image);
         
         try {
-          await axios.post('http://localhost:3000/api/events', formData)
+          await axios.post(`${this.baseURL}/api/events`, formData)
           this.$emit('event-added')
           this.resetForm()
           this.onClose();

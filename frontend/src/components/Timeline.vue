@@ -135,6 +135,7 @@ import {ArrowDown} from "@element-plus/icons-vue"
         qrCodeValue: '', // 二维码的内容
         qrCodeSize: 150, // 二维码的尺寸，单位是像素
         qrcodevisible: false,
+        baseURL: `${window.location.protocol}//${window.location.hostname}:3000`,
       }
     },
   
@@ -178,7 +179,7 @@ import {ArrowDown} from "@element-plus/icons-vue"
         this.error = null
         
         try {
-          const response = await axios.get('http://localhost:3000/api/events')
+          const response = await axios.get(`${this.baseURL}/api/events`)
           this.events = response.data
           this.handleData();
         } catch (error) {
@@ -200,7 +201,7 @@ import {ArrowDown} from "@element-plus/icons-vue"
         this.loading = true
         try {
           const response = await axios.get(
-            `http://localhost:3000/api/events/range/${this.filters.startDate}/${this.filters.endDate}`
+            `${this.baseURL}/api/events/range/${this.filters.startDate}/${this.filters.endDate}`
           )
           this.events = response.data
         } catch (error) {
@@ -261,7 +262,7 @@ import {ArrowDown} from "@element-plus/icons-vue"
 
       generateQRCode() {
         this.qrcodevisible = true;
-        this.qrCodeValue = 'http://192.168.1.39:8080/'; // 设置二维码内容
+        this.qrCodeValue = 'http://172.20.10.3:8086/'; // 设置二维码内容
       },
   
       // 重置筛选条件
